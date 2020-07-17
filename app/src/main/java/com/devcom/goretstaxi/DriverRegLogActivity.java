@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -100,10 +101,14 @@ public class DriverRegLogActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     loadingBar.dismiss();
-                    Toast.makeText(DriverRegLogActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DriverRegLogActivity.this, "Вход прошел успешно", Toast.LENGTH_SHORT).show();
+                    Intent driverMapIntent = new Intent(DriverRegLogActivity.this, DriverMapActivity.class);
+                    startActivity(driverMapIntent);
                 } else {
                     loadingBar.dismiss();
-                    Toast.makeText(DriverRegLogActivity.this, "Произошла ошибка регистрации "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DriverRegLogActivity.this, "Произошла ошибка входа "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Intent driverMapIntent = new Intent(DriverRegLogActivity.this, DriverMapActivity.class);
+                    startActivity(driverMapIntent);
                 }
             }
         });

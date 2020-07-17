@@ -100,10 +100,10 @@ public class PassengerRegLogActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     loadingBar.dismiss();
-                    Toast.makeText(PassengerRegLogActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PassengerRegLogActivity.this, "Вход прошел успешно", Toast.LENGTH_SHORT).show();
                 } else {
                     loadingBar.dismiss();
-                    Toast.makeText(PassengerRegLogActivity.this, "Произошла ошибка регистрации "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PassengerRegLogActivity.this, "Произошла ошибка входа "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

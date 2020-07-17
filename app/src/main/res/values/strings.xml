@@ -9,4 +9,5 @@
     <string name="forPassenger">Для пассажира</string>
     <string name="registration">Регистрация</string>
     <string name="createQuestion">Еще нет аккаунта?</string>
+    <string name="title_activity_driver_map">Map</string>
 </resources>
