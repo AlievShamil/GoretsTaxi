@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
                 } finally {
                     Intent welcomeIntent = new Intent(MainActivity.this, WelcomeActivity.class);
                     startActivity(welcomeIntent);
+
+//                    Intent welcomeIntent = new Intent(MainActivity.this, DriverMapActivity.class);
+//                    startActivity(welcomeIntent);
                 }
             }
         };

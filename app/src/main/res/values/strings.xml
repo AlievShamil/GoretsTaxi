@@ -10,4 +10,8 @@
     <string name="registration">Регистрация</string>
     <string name="createQuestion">Еще нет аккаунта?</string>
     <string name="title_activity_driver_map">Map</string>
+    <string name="settings">Настройки</string>
+    <string name="exit">Выход</string>
+    <string name="order">Вызов</string>
+    <string name="title_activity_passenger_maps">Map</string>
 </resources>
