@@ -1,7 +1,9 @@
 package com.devcom.goretstaxi;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,11 +11,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class DriverRegLogActivity extends AppCompatActivity {
 
     private Button signInBtn, signUpBtn;
     private EditText emailInput,passInput;
     private TextView driverStatus, question;
+    private FirebaseAuth mAuth;
+    private ProgressDialog loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +35,28 @@ public class DriverRegLogActivity extends AppCompatActivity {
         passInput = findViewById(R.id.driverPassword);
         driverStatus = findViewById(R.id.statusDriver);
         question = findViewById(R.id.accountCreate);
+
+        loadingBar = new ProgressDialog(this);
+
+        mAuth = FirebaseAuth.getInstance();
         
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(DriverRegLogActivity.this, "Click", Toast.LENGTH_SHORT).show();
+                String email = emailInput.getText().toString();
+                String password = passInput.getText().toString();
+
+                registerDriver(email, password);
+            }
+        });
+
+        signInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = emailInput.getText().toString();
+                String password = passInput.getText().toString();
+
+                signInDriver(email, password);
             }
         });
 
@@ -40,7 +66,45 @@ public class DriverRegLogActivity extends AppCompatActivity {
                 signInBtn.setVisibility(View.INVISIBLE);
                 question.setVisibility(View.INVISIBLE);
                 signUpBtn.setVisibility(View.VISIBLE);
-                driverStatus.setText("Регистрация для водителей");
+                driverStatus.setText("Регистрация водителя");
+            }
+        });
+    }
+
+    private void registerDriver(String email, String password) {
+        loadingBar.setTitle("Регистрация водителя");
+        loadingBar.setMessage("Пожалуйста подождите");
+        loadingBar.show();
+
+        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
+                    loadingBar.dismiss();
+                    Toast.makeText(DriverRegLogActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                } else {
+                    loadingBar.dismiss();
+                    Toast.makeText(DriverRegLogActivity.this, "Произошла ошибка регистрации "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void signInDriver(String email, String password) {
+        loadingBar.setTitle("Вход водителя");
+        loadingBar.setMessage("Пожалуйста подождите");
+        loadingBar.show();
+
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
+                    loadingBar.dismiss();
+                    Toast.makeText(DriverRegLogActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                } else {
+                    loadingBar.dismiss();
+                    Toast.makeText(DriverRegLogActivity.this, "Произошла ошибка регистрации "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

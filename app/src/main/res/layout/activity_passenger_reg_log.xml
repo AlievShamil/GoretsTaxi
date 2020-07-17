@@ -4,13 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/welcome"
     tools:context=".PassengerRegLogActivity">
 
     <TextView
+        android:id="@+id/statusPassenger"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Для пассажиров"
-        android:textSize="40sp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:text="@string/forPassenger"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/passengerEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/statusPassenger"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="@string/driverEmail"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/passengerPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passengerEmail"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="@string/driverPassword"
+        android:inputType="textPassword"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/signInPassenger"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passengerPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@android:color/holo_green_light"
+        android:text="@string/signIn"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/singUpPassenger"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passengerPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@android:color/holo_red_light"
+        android:text="@string/registration"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/accountCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/signInPassenger"
+        android:text="@string/createQuestion"
+        android:layout_marginTop="5dp"/>
 
 </RelativeLayout>

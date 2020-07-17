@@ -5,7 +5,8 @@
     <string name="driverEmail">Введите email</string>
     <string name="driverPassword">Введите пароль</string>
     <string name="signIn">Войти</string>
-    <string name="forDriver">Для водителей</string>
+    <string name="forDriver">Для водителя</string>
+    <string name="forPassenger">Для пассажира</string>
     <string name="registration">Регистрация</string>
     <string name="createQuestion">Еще нет аккаунта?</string>
 </resources>
