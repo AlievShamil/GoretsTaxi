@@ -30,7 +30,7 @@ public class WelcomeActivity extends AppCompatActivity {
         consumerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent consumerIntent = new Intent(WelcomeActivity.this, ConsumerRegLogActivity.class);
+                Intent consumerIntent = new Intent(WelcomeActivity.this, PassengerRegLogActivity.class);
                 startActivity(consumerIntent);
             }
         });

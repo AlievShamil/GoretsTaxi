@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ConsumerRegLogActivity extends AppCompatActivity {
+public class PassengerRegLogActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consumer_reg_log);
+        setContentView(R.layout.activity_passenger_reg_log);
     }
 }

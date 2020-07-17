@@ -2,4 +2,10 @@
     <string name="app_name">GoretsTaxi</string>
     <string name="driverBtn">Я Водитель</string>
     <string name="consumerBtn">Я пассажир</string>
+    <string name="driverEmail">Введите email</string>
+    <string name="driverPassword">Введите пароль</string>
+    <string name="signIn">Войти</string>
+    <string name="forDriver">Для водителей</string>
+    <string name="registration">Регистрация</string>
+    <string name="createQuestion">Еще нет аккаунта?</string>
 </resources>
