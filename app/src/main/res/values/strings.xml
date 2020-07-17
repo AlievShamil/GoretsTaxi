@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GoretsTaxi</string>
+    <string name="driverBtn">Я Водитель</string>
+    <string name="consumerBtn">Я пассажир</string>
 </resources>

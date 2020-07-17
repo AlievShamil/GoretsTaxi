@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1035045712259",
+    "firebase_url": "https://goretstaxi-80d2a.firebaseio.com",
+    "project_id": "goretstaxi-80d2a",
+    "storage_bucket": "goretstaxi-80d2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035045712259:android:1157b1fc7af6809de106b6",
+        "android_client_info": {
+          "package_name": "com.devcom.goretstaxi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035045712259-3ahni3mcmo24gae982r2cltv8teb0abr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devcom.goretstaxi",
+            "certificate_hash": "0e794df59fbbd00b15248e9514fe94ca6c2086df"
+          }
+        },
+        {
+          "client_id": "1035045712259-vhimb899ti195g9looq920qlp9m7p5p6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD68wVnbkMWlnFBFakAbbtab43l3VuBaag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035045712259-vhimb899ti195g9looq920qlp9m7p5p6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
