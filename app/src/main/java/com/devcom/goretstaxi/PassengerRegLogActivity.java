@@ -16,13 +16,20 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class PassengerRegLogActivity extends AppCompatActivity {
 
     private Button signInBtn, signUpBtn;
     private EditText emailInput, passInput;
     private TextView passengerStatus, question;
+
     private FirebaseAuth mAuth;
+    private DatabaseReference passengerDatabaseRef;
+
+    private String onlinePassengerID;
+
     private ProgressDialog loadingBar;
 
     @Override
@@ -81,10 +88,16 @@ public class PassengerRegLogActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    loadingBar.dismiss();
-                    Toast.makeText(PassengerRegLogActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                    onlinePassengerID = mAuth.getCurrentUser().getUid();
+                    passengerDatabaseRef = FirebaseDatabase.getInstance().getReference()
+                            .child("Users").child("Passengers").child(onlinePassengerID);
+                    passengerDatabaseRef.setValue(true);
+
                     Intent passengerIntent = new Intent(PassengerRegLogActivity.this, PassengerMapsActivity.class);
                     startActivity(passengerIntent);
+                    Toast.makeText(PassengerRegLogActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
+
                 } else {
                     loadingBar.dismiss();
                     Toast.makeText(PassengerRegLogActivity.this, "Произошла ошибка регистрации " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

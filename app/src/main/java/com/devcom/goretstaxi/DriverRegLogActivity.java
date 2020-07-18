@@ -16,13 +16,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class DriverRegLogActivity extends AppCompatActivity {
 
     private Button signInBtn, signUpBtn;
-    private EditText emailInput,passInput;
+    private EditText emailInput, passInput;
     private TextView driverStatus, question;
     private FirebaseAuth mAuth;
+    private DatabaseReference driverDatabaseRef;
+
+    private String onlineDriverID;
     private ProgressDialog loadingBar;
 
     @Override
@@ -40,7 +45,7 @@ public class DriverRegLogActivity extends AppCompatActivity {
         loadingBar = new ProgressDialog(this);
 
         mAuth = FirebaseAuth.getInstance();
-        
+
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,15 +82,22 @@ public class DriverRegLogActivity extends AppCompatActivity {
         loadingBar.setMessage("Пожалуйста подождите");
         loadingBar.show();
 
-        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
-                    loadingBar.dismiss();
+                if (task.isSuccessful()) {
+                    onlineDriverID = mAuth.getCurrentUser().getUid();
+                    driverDatabaseRef = FirebaseDatabase.getInstance().getReference()
+                            .child("Users").child("Drivers").child(onlineDriverID);
+                    driverDatabaseRef.setValue(true);
+
+                    Intent driverMapIntent = new Intent(DriverRegLogActivity.this, DriverMapActivity.class);
+                    startActivity(driverMapIntent);
                     Toast.makeText(DriverRegLogActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
                 } else {
                     loadingBar.dismiss();
-                    Toast.makeText(DriverRegLogActivity.this, "Произошла ошибка регистрации "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DriverRegLogActivity.this, "Произошла ошибка регистрации " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -96,17 +108,17 @@ public class DriverRegLogActivity extends AppCompatActivity {
         loadingBar.setMessage("Пожалуйста подождите");
         loadingBar.show();
 
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
-                    loadingBar.dismiss();
-                    Toast.makeText(DriverRegLogActivity.this, "Вход прошел успешно", Toast.LENGTH_SHORT).show();
+                if (task.isSuccessful()) {
                     Intent driverMapIntent = new Intent(DriverRegLogActivity.this, DriverMapActivity.class);
                     startActivity(driverMapIntent);
+                    Toast.makeText(DriverRegLogActivity.this, "Вход прошел успешно", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
                 } else {
                     loadingBar.dismiss();
-                    Toast.makeText(DriverRegLogActivity.this, "Произошла ошибка входа "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DriverRegLogActivity.this, "Произошла ошибка входа " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     Intent driverMapIntent = new Intent(DriverRegLogActivity.this, DriverMapActivity.class);
                     startActivity(driverMapIntent);
                 }
