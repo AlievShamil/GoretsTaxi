@@ -14,4 +14,8 @@
     <string name="exit">Выход</string>
     <string name="order">Вызвать такси</string>
     <string name="title_activity_passenger_maps">Map</string>
+    <string name="change_photo">Сменить фото</string>
+    <string name="name">Имя</string>
+    <string name="phoneNumber">Номер телефона</string>
+    <string name="car">Марка авто</string>
 </resources>
